@@ -1,5 +1,17 @@
 name: Sync To Gitee
-on: master
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # 每周日同步一次，对应文档 
+    # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule
+    - cron: '2,10 4,5 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 jobs:
   sync:
     runs-on: ubuntu-latest
